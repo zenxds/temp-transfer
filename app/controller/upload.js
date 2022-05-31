@@ -1,14 +1,16 @@
 const path = require('path')
+const config = require('config')
 const fse = require('fs-extra')
 const { isEmptyDir } = require('../util')
 const services = require('../service')
 
 const subscribe = services.redis.factory()
 const uploadDest = path.join(path.dirname(__dirname), 'public')
+const cacheTime = config.get('transfer.cache') || 3600
 
 exports.upload = async(ctx) => {
   // 缓存1小时
-  await services.redis.client.set(ctx.file.filename, '1', 'EX', 3600)
+  await services.redis.client.set(ctx.file.filename, '1', 'EX', cacheTime)
   ctx.body = ctx.file.filename
 }
 
