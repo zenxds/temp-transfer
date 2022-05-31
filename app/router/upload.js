@@ -4,6 +4,7 @@ const uuid = require('uuid').v4
 const Router = require('@koa/router')
 const router = new Router()
 
+const tokenVerify = require('../middleware/token')
 const controller = require('../controller/upload')
 
 const multer = require('@koa/multer')
@@ -25,6 +26,6 @@ const upload = multer({
   storage: storage
 })
 
-router.post('/', upload.single('file'), controller.upload)
+router.post('/', tokenVerify, upload.single('file'), controller.upload)
 
 module.exports = router

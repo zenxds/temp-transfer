@@ -15,6 +15,10 @@ module.exports = {
     // password: null
   },
 
+  transfer: {
+    token: ''
+  },
+
   ignoreOrigin: false,
 
   staticVersion: '0.1.0'
