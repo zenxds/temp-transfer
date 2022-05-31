@@ -1,8 +1,13 @@
-# koa-boilerplate
+# temp-transfer
 
 ```
 yarn i
 npm start
+
+server=http://127.0.0.1:7777
+download_url=$(curl --form file="@$1" $server/upload)
+echo "curl -o $1 $server/$download_url"
+echo "curl -o $1 $server/$download_url" | pbcopy
 ```
 
 ## 文件说明
