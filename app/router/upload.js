@@ -8,7 +8,7 @@ const tokenVerify = require('../middleware/token')
 const controller = require('../controller/upload')
 
 const multer = require('@koa/multer')
-const uploadDest = path.join(path.dirname(__dirname), 'public')
+const uploadDest = path.join(__dirname, '../public')
 
 // 使用multer上传
 const storage = multer.diskStorage({

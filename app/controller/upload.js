@@ -4,8 +4,9 @@ const fse = require('fs-extra')
 const { isEmptyDir } = require('../util')
 const services = require('../service')
 
+const appLogger = require('../util/logger')('app')
 const subscribe = services.redis.factory()
-const uploadDest = path.join(path.dirname(__dirname), 'public')
+const uploadDest = path.join(__dirname, '../public')
 const cacheTime = config.get('transfer.cache') || 3600
 
 exports.upload = async(ctx) => {
@@ -22,6 +23,7 @@ subscribe.subscribe('__keyevent@0__:expired', '__keyevent@0__:del', (err) => {
 })
 
 subscribe.on('message', (channel, message) => {
+  appLogger.info('[redis] %s %s', channel, message)
   const file = path.join(uploadDest, message)
   if (fse.existsSync(file)) {
     fse.removeSync(file)
