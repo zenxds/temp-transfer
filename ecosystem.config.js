@@ -5,11 +5,11 @@ module.exports = {
    */
   apps: [
     {
-      name: 'koa-app',
+      name: 'temp-transfer',
       script: 'index.js',
-      instances : 'max',
-      exec_mode : 'cluster',
-      instance_var: 'INSTANCE_ID',
+      // instances : 'max',
+      // exec_mode : 'cluster',
+      // instance_var: 'INSTANCE_ID',
       env_production: {
         NODE_ENV: 'production'
       }

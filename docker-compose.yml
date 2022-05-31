@@ -1,8 +1,8 @@
 version: '2'
 services:
   web:
-    image: koa/app:latest
-    container_name: koa-app
+    image: zenxds/transfer:latest
+    container_name: temp-transfer
     restart: always
     build:
       context: .
