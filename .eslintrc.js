@@ -4,6 +4,7 @@ module.exports = {
     ecmaVersion: 8,
   },
   env: {
+    browser: true,
     node: true,
     jest: true,
   },

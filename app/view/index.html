@@ -1,5 +1,17 @@
 {% extends "layout/base.html" %}
 
+{% block title %}首页{% endblock %}
+
 {% block content %}
-<p>Hello world {{ key }}!</p>
+<div class="container">
+  <label for="file" class="main-label">Click To Upload</label>
+  <input type="file" hidden id="file" name="file">
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  var token = '{{ token }}'
+</script>
+<script src="js/index.js"></script>
 {% endblock %}

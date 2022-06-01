@@ -40,6 +40,11 @@ app.use(require('./middleware/cors'))
 app.use(
   koaStatic(path.join(__dirname, 'public'), {
     hidden: true,
+    maxage: 1000 * 3600 * 1,
+  }),
+)
+app.use(
+  koaStatic(path.join(__dirname, 'assets'), {
     maxage: app.isProduction ? 1000 * 3600 * 24 : 0,
   }),
 )
