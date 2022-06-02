@@ -1,7 +1,5 @@
 ;(function () {
-  var file = document.querySelector('#file')
-
-  file.addEventListener(
+  document.querySelector('#file').addEventListener(
     'change',
     function () {
       var data = new FormData()
@@ -12,7 +10,11 @@
         body: data,
       })
         .then(function (response) {
-          return response.text()
+          if (response.ok) {
+            return response.text()
+          }
+
+          throw new Error('上传失败')
         })
         .then(function (text) {
           var link = location.protocol + '//' + location.host + '/' + text
