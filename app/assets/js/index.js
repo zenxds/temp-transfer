@@ -14,7 +14,9 @@
             return response.text()
           }
 
-          throw new Error('上传失败')
+          return response.text().then(function (text) {
+            throw new Error(text || '上传失败')
+          })
         })
         .then(function (text) {
           var link = location.protocol + '//' + location.host + '/' + text
