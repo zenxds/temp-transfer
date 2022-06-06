@@ -10,9 +10,13 @@ const uploadDest = path.join(__dirname, '../public')
 const cacheTime = config.get('transfer.cache') || 3600
 
 exports.upload = async(ctx) => {
+  // file.filepath 完整路径
+  const { file } = ctx.request.files
+  const filename = file.newFilename
+
   // 缓存1小时
-  await services.redis.client.set(ctx.file.filename, '1', 'EX', cacheTime)
-  ctx.body = ctx.file.filename
+  await services.redis.client.set(filename, '1', 'EX', cacheTime)
+  ctx.body = filename
 }
 
 // redis-cli config set notify-keyspace-events Egx

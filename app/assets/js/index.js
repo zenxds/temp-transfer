@@ -4,8 +4,9 @@
     function () {
       var data = new FormData()
       data.append('file', this.files[0])
+      data.append('token', window.token)
 
-      fetch('/upload?token=' + window.token, {
+      fetch('/upload', {
         method: 'POST',
         body: data,
       })
