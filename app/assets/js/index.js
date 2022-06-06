@@ -20,7 +20,7 @@
           })
         })
         .then(function (text) {
-          var link = location.protocol + '//' + location.host + '/' + text
+          var link = location.protocol + '//' + location.host + '/' + text + '?token=' + window.token
           document.querySelector('.container').innerHTML = '<a href="' + link + '" target="_blank">' + link + '</a>'
         })
         .catch(function (err) {

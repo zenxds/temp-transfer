@@ -53,14 +53,15 @@ app.use(
 // app.use(new CSRF())
 app.use(require('./middleware/cors'))
 app.use(
+  koaStatic(path.join(__dirname, 'assets'), {
+    maxage: app.isProduction ? 1000 * 3600 * 24 : 0,
+  }),
+)
+app.use(require('./middleware/token'))
+app.use(
   koaStatic(uploadDest, {
     hidden: true,
     maxage: 1000 * 3600 * 1,
-  }),
-)
-app.use(
-  koaStatic(path.join(__dirname, 'assets'), {
-    maxage: app.isProduction ? 1000 * 3600 * 24 : 0,
   }),
 )
 app.use(require('./middleware/render'))
