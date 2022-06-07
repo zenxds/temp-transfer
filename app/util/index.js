@@ -14,5 +14,9 @@ exports.validateToken = token => {
     return true
   }
 
+  if (Array.isArray(transferToken)) {
+    return transferToken.includes(token)
+  }
+
   return token === transferToken
 }
