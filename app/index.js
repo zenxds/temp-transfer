@@ -57,6 +57,11 @@ app.use(
     maxage: app.isProduction ? 1000 * 3600 * 24 : 0,
   }),
 )
+app.use(require('./middleware/render'))
+app.use(require('./middleware/state'))
+app.use(require('./middleware/error'))
+app.use(json())
+app.use(require('./middleware/api')())
 app.use(require('./middleware/token'))
 app.use(
   koaStatic(uploadDest, {
@@ -64,11 +69,6 @@ app.use(
     maxage: 1000 * 3600 * 1,
   }),
 )
-app.use(require('./middleware/render'))
-app.use(require('./middleware/state'))
-app.use(require('./middleware/error'))
-app.use(json())
-app.use(require('./middleware/api')())
 app.use(router.routes())
 app.use(router.allowedMethods())
 

@@ -7,6 +7,7 @@ module.exports = async function (ctx, next) {
   if (!validateToken(token)) {
     const { file } = ctx.request.files || {}
     if (file) {
+      // 校验不通过时删掉已经上传的文件
       await services.redis.client.publish('__keyevent@0__:del', file.newFilename)
     }
 
