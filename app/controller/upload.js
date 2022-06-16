@@ -5,6 +5,7 @@ const { isEmptyDir } = require('../util')
 const services = require('../service')
 
 const appLogger = require('../util/logger')('app')
+const db = config.get('redis.db') || 0
 const subscribe = services.redis.factory()
 const uploadDest = path.join(__dirname, '../public')
 const cacheTime = config.get('transfer.cache') || 3600
@@ -20,7 +21,7 @@ exports.upload = async(ctx) => {
 }
 
 // redis-cli config set notify-keyspace-events Egx
-subscribe.subscribe('__keyevent@0__:expired', '__keyevent@0__:del', (err) => {
+subscribe.subscribe(`__keyevent@${db}__:expired`, `__keyevent@${db}__:del`, (err) => {
   if (err) {
     console.error('Failed to subscribe: %s', err.message)
   }
