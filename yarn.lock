@@ -3152,6 +3152,13 @@ koa-csrf@^3.0.6:
   dependencies:
     csrf "^3.1.0"
 
+koa-favicon@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/koa-favicon/-/koa-favicon-2.1.0.tgz#c430cc594614fb494adcb5ee1196a2f7f53ea442"
+  integrity sha512-LvukcooYjxKtnZq0RXdBup+JDhaHwLgnLlDHB/xvjwQEjbc4rbp/0WkmOzpOvaHujc+fIwPear0dpKX1V+dHVg==
+  dependencies:
+    mz "^2.7.0"
+
 koa-is-json@1, koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -3509,7 +3516,7 @@ mysql2@^2.3.3:
     seq-queue "^0.0.5"
     sqlstring "^2.3.2"
 
-mz@^2.4.0:
+mz@^2.4.0, mz@^2.7.0:
   version "2.7.0"
   resolved "https://registry.npmjs.org/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   integrity sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==
