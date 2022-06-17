@@ -1,7 +1,4 @@
-const config = require('config')
-const services = require('../service')
-const { validateToken } = require('../util')
-const db = config.get('redis.db') || 0
+const { validateToken, deleteUploadFile } = require('../util')
 
 module.exports = async function (ctx, next) {
   const token = ctx.query.token || ctx.request.body.token || ctx.get('x-transfer-token')
@@ -10,7 +7,7 @@ module.exports = async function (ctx, next) {
     const { file } = ctx.request.files || {}
     if (file) {
       // 校验不通过时删掉已经上传的文件
-      await services.redis.client.publish(`__keyevent@${db}__:del`, file.newFilename)
+      deleteUploadFile(file.newFilename)
     }
 
     ctx.throw(401, 'token is invalid')

@@ -1,7 +1,6 @@
 const path = require('path')
 const config = require('config')
-const fse = require('fs-extra')
-const { isEmptyDir } = require('../util')
+const { deleteUploadFile } = require('../util')
 const services = require('../service')
 
 const appLogger = require('../util/logger')('app')
@@ -30,12 +29,5 @@ subscribe.subscribe(`__keyevent@${db}__:expired`, `__keyevent@${db}__:del`, (err
 subscribe.on('message', (channel, message) => {
   appLogger.info('[redis] %s %s', channel, message)
   const file = path.join(uploadDest, message)
-  if (fse.existsSync(file)) {
-    fse.removeSync(file)
-
-    const dir = path.dirname(file)
-    if (isEmptyDir(dir)) {
-      fse.removeSync(dir)
-    }
-  }
+  deleteUploadFile(file)
 })
