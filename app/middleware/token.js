@@ -7,7 +7,7 @@ module.exports = async function (ctx, next) {
     const { file } = ctx.request.files || {}
     if (file) {
       // 校验不通过时删掉已经上传的文件
-      deleteUploadFile(file.newFilename)
+      deleteUploadFile(file.filepath)
     }
 
     ctx.throw(401, 'token is invalid')

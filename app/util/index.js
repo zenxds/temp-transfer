@@ -1,4 +1,4 @@
-const path = require*('path')
+const path = require('path')
 const fs = require('fs')
 const fse = require('fs-extra')
 const config = require('config')
