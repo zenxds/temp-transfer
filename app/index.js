@@ -7,7 +7,6 @@ const session = require('koa-session')
 const koaStatic = require('koa-static')
 const xmlParser = require('koa-xml-body')
 const json = require('koa-json')
-const compress = require('koa-compress')
 const uuid = require('uuid').v4
 
 const app = require('./app')
@@ -16,7 +15,6 @@ const uploadDest = path.join(__dirname, 'public')
 
 app.use(favicon(path.join(__dirname, '../favicon.ico')))
 app.use(require('./middleware/logger')(app))
-app.use(compress())
 app.use(require('./middleware/minify')())
 app.use(
   xmlParser({
